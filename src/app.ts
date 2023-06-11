@@ -5,11 +5,14 @@ import { json } from "body-parser";
 import { notFound } from "./middleware/not-found";
 import { errorHandlerMiddleware } from "./middleware/error-handler";
 import "express-async-errors"
+import morgan from "morgan"
 dotenv.config();
 const app = express();
 
 // middleware
+app.use(morgan("tiny"))
 app.use(json());
+
 app.get("/", (req, res) => {
   res.send("e-commerce-api");
 });
