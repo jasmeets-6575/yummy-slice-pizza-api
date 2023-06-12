@@ -1,31 +1,19 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-enum pizzaMania {
-  veg1 = "VEG 1",
-  veg2 = "VEG 2",
-  veg3 = "VEG 3",
+enum categories {
+  ourMenu = "OUR MENU",
+  bestSellers = "BEST SELLERS",
+  singleToppings = "SINGLE TOPPINGS",
+  doubleToppings = "DOUBLE TOPPINGS",
+  desserts = "DESSERTS",
 }
-
-enum burgerFries {
-  burgers = "BURGERS",
-  fries = "FRIES",
-}
-enum shakesSandwich {
-  shakes = "SHAKES",
-  sandwich = "SANDWICH",
-}
-enum wrapsBreads {
-  wraps = "WRAPS",
-  breads = "BREADS",
-}
-
 interface SchemaInput extends Document {
   name: string;
   price: number;
-  description:string;
-  image:string;
-  category:string[];
-  featured:boolean
+  description: string;
+  image: string;
+  category: string[];
+  featured: boolean;
 }
 
 const ProductSchema: Schema = new mongoose.Schema({
@@ -57,17 +45,22 @@ const ProductSchema: Schema = new mongoose.Schema({
       "BEST SELLERS",
       "SINGLE TOPPINGS",
       "DOUBLE TOPPINGS",
-      pizzaMania,
-      burgerFries,
-      shakesSandwich,
-      wrapsBreads,
+      "VEG 1",
+      "VEG 2",
+      "VEG 3",
+      "BURGERS",
+      "FRIES",
+      "SHAKES",
+      "SANDWICH",
+      "WRAPS",
+      "BREADS",
       "DESSERTS",
     ],
   },
   featured: {
-    type:Boolean,
-    default: false
-  }
+    type: Boolean,
+    default: false,
+  },
 });
 
 export default mongoose.model<SchemaInput>("Products", ProductSchema);
