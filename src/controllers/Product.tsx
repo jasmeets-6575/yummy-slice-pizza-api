@@ -2,6 +2,8 @@ import { RequestHandler } from "express";
 import { NextFunction, Response, Request } from "express";
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/Products";
+import { CustomAPIError } from "../errors/custom-error";
+import { NotFound } from "../errors/not-found";
 
 export const createProduct: RequestHandler = async (req, res) => {
   const product = await Product.create(req.body);
@@ -14,7 +16,13 @@ export const getAllProducts: RequestHandler = async (req, res) => {
 };
 
 export const getSingleProduct: RequestHandler = async (req, res) => {
-  res.send("get single product");
+  const { id: productId } = req.params;
+  const product = await Product.findOne({ _id: productId });
+  if (!product) {
+    throw new NotFound(`No product with id:${productId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ product });
 };
 
 export const updateProduct: RequestHandler = async (req, res) => {
