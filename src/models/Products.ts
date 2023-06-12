@@ -1,12 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-enum categories {
-  ourMenu = "OUR MENU",
-  bestSellers = "BEST SELLERS",
-  singleToppings = "SINGLE TOPPINGS",
-  doubleToppings = "DOUBLE TOPPINGS",
-  desserts = "DESSERTS",
-}
 interface SchemaInput extends Document {
   name: string;
   price: number;
@@ -36,26 +29,24 @@ const ProductSchema: Schema = new mongoose.Schema({
   image: {
     type: String,
     default: 0,
+    required: true,
   },
   category: {
     type: String,
     required: [true, " please provide category"],
     enum: [
-      "OUR MENU",
-      "BEST SELLERS",
-      "SINGLE TOPPINGS",
-      "DOUBLE TOPPINGS",
-      "VEG 1",
-      "VEG 2",
-      "VEG 3",
-      "BURGERS",
-      "FRIES",
-      "SHAKES",
-      "SANDWICH",
-      "WRAPS",
-      "BREADS",
-      "DESSERTS",
+      "our menu",
+      "best sellers",
+      "favorite toppings",
+      "Pizza Mania",
+      "burgers",
+      "shakes",
+      "sandwich",
+      "Sides",
     ],
+  },
+  group: {
+    type: String,
   },
   featured: {
     type: Boolean,

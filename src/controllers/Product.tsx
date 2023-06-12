@@ -9,7 +9,8 @@ export const createProduct: RequestHandler = async (req, res) => {
 };
 
 export const getAllProducts: RequestHandler = async (req, res) => {
-  res.send("get all products");
+  const products = await Product.find({});
+  res.status(StatusCodes.OK).json({ products, count: products.length });
 };
 
 export const getSingleProduct: RequestHandler = async (req, res) => {
