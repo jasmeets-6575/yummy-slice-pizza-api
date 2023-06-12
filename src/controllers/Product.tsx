@@ -37,7 +37,12 @@ export const updateProduct: RequestHandler = async (req, res) => {
 };
 
 export const deleteProduct: RequestHandler = async (req, res) => {
-  
+  const { id: productId } = req.params;
+  const product = await Product.findOneAndDelete({ _id: productId });
+  if (!product) {
+    throw new NotFound(`No product with id:${productId}`);
+  }
+  res.status(StatusCodes.OK).json({ msg: "Success! Product Removed..." });
 };
 
 export const uploadImage: RequestHandler = async (req, res) => {
