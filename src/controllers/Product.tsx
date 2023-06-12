@@ -21,16 +21,23 @@ export const getSingleProduct: RequestHandler = async (req, res) => {
   if (!product) {
     throw new NotFound(`No product with id:${productId}`);
   }
-
   res.status(StatusCodes.OK).json({ product });
 };
 
 export const updateProduct: RequestHandler = async (req, res) => {
-  res.send("update product");
+  const { id: productId } = req.params;
+  const product = await Product.findOneAndUpdate({ _id: productId }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if (!product) {
+    throw new NotFound(`No product with id:${productId}`);
+  }
+  res.status(StatusCodes.OK).json({ product });
 };
 
 export const deleteProduct: RequestHandler = async (req, res) => {
-  res.send("delete product");
+  
 };
 
 export const uploadImage: RequestHandler = async (req, res) => {
