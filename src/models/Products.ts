@@ -22,6 +22,10 @@ enum wrapsBreads {
 interface SchemaInput extends Document {
   name: string;
   price: number;
+  description:string;
+  image:string;
+  category:string[];
+  featured:boolean
 }
 
 const ProductSchema: Schema = new mongoose.Schema({
