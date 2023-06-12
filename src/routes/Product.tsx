@@ -13,7 +13,7 @@ router.route("/").post(createProduct).get(getAllProducts);
 
 router.route("/uploadImage").post(uploadImage);
 router
-  .route("/id")
+  .route("/:id")
   .get(getSingleProduct)
   .patch(updateProduct)
   .delete(deleteProduct);
