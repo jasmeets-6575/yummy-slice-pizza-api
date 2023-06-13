@@ -8,11 +8,10 @@ import {
   updateProduct,
   uploadImage,
 } from "../controllers/Product";
-import { uploadProductImage } from "../controllers/uploadsControllers";
 
 router.route("/").post(createProduct).get(getAllProducts);
 
-router.route("/uploadImage").post(uploadImage);
+router.route("/uploadimage").post(uploadImage);
 router
   .route("/:id")
   .get(getSingleProduct)

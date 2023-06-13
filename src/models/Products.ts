@@ -6,6 +6,7 @@ interface SchemaInput extends Document {
   description: string;
   image: string;
   category: string[];
+  group?: string;
   featured: boolean;
 }
 
@@ -13,22 +14,22 @@ const ProductSchema: Schema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: [true, " please enter a value"],
-    maxlength: [100, "You limit exceeds"],
+    required: [true, "please enter a value"],
+    maxlength: [100, "Your limit exceeds"],
   },
   price: {
     type: Number,
-    required: [true, " please enter product price"],
+    required: [true, "please enter product price"],
     default: 0,
   },
   description: {
     type: String,
-    required: [true, " please enter description"],
+    required: [true, "please enter description"],
     minlength: [10, "please explain more"],
   },
   image: {
     type: String,
-    default: ".././public/uploads/example.jpg",
+    default: "/uploads/example.jpg",
     required: true,
   },
   category: {

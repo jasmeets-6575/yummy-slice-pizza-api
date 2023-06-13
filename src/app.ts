@@ -8,12 +8,6 @@ import "express-async-errors";
 import morgan from "morgan";
 import productRouter from "./routes/Product";
 import fileUpload from "express-fileupload";
-import { v2 as cloudinary } from 'cloudinary'
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-});
 
 dotenv.config();
 const app = express();
@@ -21,8 +15,8 @@ const app = express();
 // middleware
 app.use(morgan("tiny"));
 app.use(json());
-app.use(express.static("./public"));
-// app.use(fileUpload({useTempFiles:true}));
+app.use(express.static("../public"));
+app.use(fileUpload());
 
 app.get("/", (req, res) => {
   res.send("e-commerce-api");
