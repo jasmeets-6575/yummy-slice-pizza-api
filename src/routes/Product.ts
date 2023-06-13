@@ -6,8 +6,8 @@ import {
   getAllProducts,
   getSingleProduct,
   updateProduct,
-  uploadImage,
 } from "../controllers/Product";
+import { uploadImage } from "../controllers/uploadImage";
 
 router.route("/").post(createProduct).get(getAllProducts);
 
